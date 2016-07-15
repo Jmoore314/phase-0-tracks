@@ -8,7 +8,7 @@ Version control allows you to see each change made to a particular file in an or
 
 * What is a branch and why would you use one?
 
-A branch is like a copy of a file (the master) in which you are able to edit files safely without making permanent changes to the master. You would particularly use this if the master file is sensitive or if more than one person is doing work within a particular file. After changes are made by one person a second, usually the manager, is able to look throught th echanges and finally decide whether or not to merge the new branch with the master.
+A branch is like a copy of a file (the master) in which you are able to edit files safely without making permanent changes to the master. You would particularly use this if the master file is sensitive or if more than one person is doing work within a particular file. After changes are made by one person a second, usually the manager, is able to look through the changes and finally decide whether or not to merge the new branch with the master.
 
 * What is a commit? What makes a good commit message?
 
@@ -18,6 +18,6 @@ Commit is like a change notification to let others, or yourself, know what was c
 
 * What is a merge conflict?
 
-A merge conflict occurs when the master file is pulled multiple times then edited once, submitted and then edited the original (not the new version that was just submitted) and attempted to submit again, when code dependancies have changed in the newer version-1 while the newer version-2 were depending on the original master.
+A merge conflict occurs when the master file is pulled multiple times then edited once, submitted and then edited the original (not the new version that was just submitted) and attempted to submit again, when code dependencies have changed in the newer version-1 while the newer version-2 were depending on the original master.
 
 
