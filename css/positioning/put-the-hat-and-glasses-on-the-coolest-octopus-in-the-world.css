@@ -1,0 +1,36 @@
+h1 {
+	font-family: apple chancery; 
+}
+
+h2 {
+	font-family: zapfino;
+}
+
+h2 em {
+	font-weight: bold;
+	font-size: 3em;
+}
+
+.img {
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+#octo {
+	position: relative;
+	padding: 50px 0px 0px 400px;
+	margin: 20px 0px 0px 0px;
+}
+
+#glasses {
+	position: absolute;
+	top: 168px;
+	left: 442px;
+}
+
+#hat {
+	position: absolute;
+	bottom: 200px;
+	left: 380px;
+}
