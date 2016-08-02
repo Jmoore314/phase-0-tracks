@@ -1,0 +1,295 @@
+#Personal Robot uses elevator
+
+Recognize that an elevator generally has a recessed doorway or series of recessed doorways of about a foot, is metal or made of a different harder material than the walls surrounding it, and accompanied by a button in the immediate vicinity of the recessed doorway(s).
+
+Robot asks: "Will we be using the elevator?"
+
+If response from human is "Yes"
+	
+	Take notice of the button(s) accompanying the recessed doorway
+	
+	If one button
+
+		Press the button and hold for 1 second
+
+		Release the button
+
+		Acknowledge appropriate button lights up
+
+	Else 
+
+		Ask "Will we be going up or down"
+
+		If human responds "up"
+
+			Locate the top button 
+
+			Press the button and hold for 1 second
+
+			Release the button
+
+			Acknowledge appropriate button lights up
+
+		Else 
+
+			Locate the bottom button 
+
+			Press the button and hold for 1 second
+
+			Release the button
+
+			Acknowledge appropriate button lights up
+
+		end
+
+	end
+
+	Wait for one of the elevator doorway(s) to open
+
+	Approach doorway
+
+	If entities approaching doorway are greater than 2 
+
+		Enter elevator in orderly fashion and proceed to occupy minimalist space furthest from doorway inside elevator and allowing 1 foot of space between humans and robot.
+
+	Else 
+
+		Enter elevator in orderly fashion and proceed to occupy minimalist space nearest to another button panel inside the elevator on either the immediate right or left upon passing through doorway
+
+	end
+
+	If robot is nearest entity to button panel inside the elevator 
+
+		Ask "Which floor" to each other human entity occupying space inside the elevator
+
+		while floor number = notvalid
+
+		If human responds with number
+
+			create array and store information from human entities
+
+			take note of human controller's number
+
+			floor number = valid
+
+		Else 
+
+			appologize and re-ask for information
+
+		End
+
+		organize array from least to greatest numerically
+
+		look at panel 
+		
+		search for numbers matching each string element in storedarray
+		
+		press and hold button for 1 second 
+		
+		release button
+		
+		acknowledge button responds to being pushed
+
+	Else 
+
+		listen to human controller's information on what floor travelling to
+
+	end
+
+	take note of elevator door closing once all information is input to button panel inside elevator
+
+	wait for elevator door to reopen
+
+	take note of numbers above the inside of the elevator's doorway
+
+	if the number that the human controller has selected for floor number is lit up
+
+		wait for door to reopen
+
+		in an orderly fashion exit the elevator with the human controller
+
+		follow human controller
+
+	else 
+
+		wait patiently
+
+	end
+
+else
+
+	follow human controller
+
+end
+
+
+#########common task###########
+
+deciding to exit the apartment
+
+if decision is to exit the apartment 
+
+	hair = false 
+
+	clothing = false
+
+	articles = false
+
+	appropriate = clothing and hair and articles
+
+	while appropriate = false
+
+		look in mirror to determine if wearing appropriate clothing
+
+		if not wearing appropriate clothing
+
+			don appropriate clothing
+
+			clothing = true
+
+		else 
+
+			compliment self on wearing appropriate clothing
+
+			clothing = true
+
+		end
+
+		look in mirror to determine if hair looks appropriate
+
+		ask self if lazy = true
+
+		if not appropriate 
+
+			if lazy = true
+
+				locate hat
+
+				don hat
+
+				hair = true
+
+			else
+
+				enter lavatory
+
+				locate comb
+
+				comb hair
+
+				replace comb
+
+				hair = true
+
+			end
+
+		else 
+
+			compliment self on hair being appropriate
+
+			hair = true
+
+		end
+
+		phone = false
+
+		wallet = false
+
+		keys =false
+
+		articles = phone and wallet and keys
+
+		while articles = false
+
+			pat right pocket
+
+				if 2 items are present
+
+					phone = true
+
+					keys = true
+
+				elsif 1 item is present 
+
+					did you hear jingling?
+
+					if yes
+
+						keys = true
+
+						locate phone
+
+						place phone in right pocket
+
+						phone = true
+
+					else 
+
+						phone = true
+
+						locate keys 
+
+						place keys in right pocket
+
+						keys = true
+
+					end
+
+				else 
+
+					locate keys
+
+					place keys in right pocket
+
+					locate phone
+
+					place phone in right pocket
+
+					phone = true
+
+					keys = true
+
+				end
+
+			pat left pocket
+
+				if one item is present
+
+					wallet = true
+
+				else 
+
+					locate wallet
+
+					place wallet in left pocket
+
+					wallet = true
+
+				end
+
+		end
+
+	Exit apartment
+
+	proceed to desired location
+
+else 
+
+	netflix and chill
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
