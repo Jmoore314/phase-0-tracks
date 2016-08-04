@@ -17,14 +17,15 @@ def vamipres()
 			valid_i = true
 		end
 	end
-    
-    puts "Personnel entry #1"
-        
+     
     i = employees.to_i
 	#start loop of employees
 	n = 1
 	until n > i 
 	#start of survey
+
+		puts "Personnel entry ##{n}"
+
 		puts "What is your name"
 		name = gets.chomp
 		names = name.downcase
@@ -83,7 +84,7 @@ def vamipres()
 		#allergy array loop
 		allergy_array = Array.new
 		done = false
-		while done == false
+		while done != true
 		    puts "Please list any allergies that you might have one at a time, when done you may simply enter 'done'"
 		    allergy_array << gets.chomp
 		    check = allergy_array.last.downcase
@@ -119,12 +120,12 @@ def vamipres()
 		case
 	    when names == ("drake cula" || "tu fang")
 			puts "Definitely a vampire"
+		when age_check == false && garlic == false && insurance == false
+			puts "Almost certainly a vampire"
 		when checking == "sunshine"
 	        puts "Probably a vampire"
 		when (age_check && (garlic || insurance)) == true
 			puts "Probably not a vampire"
-		when age_check == false && garlic == false && insurance == false
-			puts "Almost certainly a vampire"
 		when (age_check && (garlic || insurance)) == false
 			puts "Probably a vampire"
 		else
@@ -132,10 +133,6 @@ def vamipres()
 		end
 		
 		n += 1
-		
-		if n > 1
-		    puts "Personnel entry ##{n}"
-		end
 	end
 	
 	puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
