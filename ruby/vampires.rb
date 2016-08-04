@@ -118,7 +118,7 @@ def vamipres()
 	
 		#final conditionals
 		case
-	    when names == ("drake cula" || "tu fang")
+		when names == ("drake cula" || "tu fang")
 			puts "Definitely a vampire"
 		when age_check == false && garlic == false && insurance == false
 			puts "Almost certainly a vampire"
