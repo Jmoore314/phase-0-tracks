@@ -12,3 +12,15 @@ def encrypt(a)
    end
    return a
 end
+
+def decrypt (b)
+ index = 0
+   while index < b.length
+    x="abcdefghijklmnopqrstuvwxyz".index(b[index])
+     x -= 1
+     b[index]="abcdefghijklmnopqrstuvwxyz"[x]
+     index += 1
+     
+   end
+   return b
+end
