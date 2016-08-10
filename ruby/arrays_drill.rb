@@ -27,7 +27,7 @@ p aliens
 
 puts "it is " + aliens.include?("blue").to_s + " that the aliens array includes 'blue'"
 
-humans = ["cool people", "you and I", "you and aye", "the ubermensch"]\
+humans = ["cool people", "you and I", "you and aye", "the ubermensch"]
 
 creatures = humans + aliens
 p creatures
