@@ -1,3 +1,12 @@
+def build_array(a,b,c)
+  new_array=[a,b,c]
+  new_array
+end
+
+def add_to_array(array, item)
+  array << item
+end
+
 aliens = []
 p aliens
 
@@ -22,3 +31,8 @@ humans = ["cool people", "you and I", "you and aye", "the ubermensch"]\
 
 creatures = humans + aliens
 p creatures
+
+p build_array(4,5,"blah")
+p add_to_array([4,5,6], 7)
+p add_to_array([true], 7)
+#trying to break it    p add_to_array(true, 7)
