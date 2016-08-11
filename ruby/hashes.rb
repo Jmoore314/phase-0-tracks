@@ -109,11 +109,11 @@ end
 puts client
 
 #Changing information conditionals
-puts "Would you like to change any of the client information?"
+puts "Would you like to add or change any client information?"
 change = gets.chomp.to_s.downcase
 
 if affirmative.include?(change)
-	puts "Which information would you like to change? \n(Ex.just type \"age\" for Age, no need for capitals or quotation marks)"
+	puts "Which information would you like to add/change? \n(Ex.just type \"age\" for Age, no need for capitals or quotation marks)"
 	info = gets.chomp.to_s.capitalize
 	if keys.include?(info)
 		puts "Which value would you like to assign this key?"
@@ -147,7 +147,18 @@ if affirmative.include?(change)
 			puts "Ok, which value would you like to assign this key?"
 			value = gets.chomp
 			puts "Lets process that addition for you."
-			hashing(client, info, value)
+			case #getting information in the corrent format
+			when value.to_i > 0
+				hashing(client, info, value.to_i)
+			when value.downcase == "true"
+				value = true
+				hashing(client, info, value)
+			when value.downcase == "false"
+				value = false
+				hashing(client, info, value)
+			else
+				hashing(client, info, value)
+			end
 			puts client
 		else 
 			puts "Alright. Thank you for your time."
