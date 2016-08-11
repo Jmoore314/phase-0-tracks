@@ -25,3 +25,32 @@ end
 #hashing(client, "me", 31)
 #hashing(client, "you", 31)
 #puts client
+
+#Ask and store user information
+puts "What is the client's full name?"
+name = gets.chomp
+
+puts "What is the client's age?"
+age = gets.chomp
+
+puts "How many children does the client have?"
+children = gets.chomp
+
+puts "Does the client like paisley wallpaper?"
+paisley = gets.chomp
+
+puts "Does the client like marble counter-tops?"
+marble = gets.chomp
+
+puts "What is the clients favourite type of wood?"
+wood = gets.chomp
+
+puts "Does the client prefer an open concept home?"
+open_concept = gets.chomp
+
+puts "What is the client's preferred interior design theme?"
+design_theme = gets.chomp
+
+puts "Does the client have any other preferences for design?"
+other = gets.chomp
+
