@@ -113,16 +113,35 @@ puts "Would you like to change any of the client information?"
 change = gets.chomp.to_s.downcase
 
 if affirmative.include?(change)
-	puts "Which information would you like to change?"
+	puts "Which information would you like to change? \n(Ex.just type \"age\" for Age, no need for capitals or quotation marks)"
 	info = gets.chomp.to_s.capitalize
 	if keys.include?(info)
 		puts "Which value would you like to assign this key?"
 		value = gets.chomp
 		puts "Lets process that change for you."
-		hashing(client, info, value)
+		case info #ensuring information stays in the correct format
+		when "Age"
+		    hashing(client, info, value.to_i)
+		when "Children"
+		    if value.to_i == 0
+		        value = nil
+		        hashing(client, info, value)
+		    else
+		        hashing(client, info, value.to_i)
+		    end
+		when "Likes_paisley", "Likes_marble", "Open_concept"
+		    if value.downcase == "true"
+		        value = true
+		    else
+		        value = false
+		    end
+		    hashing(client, info, value)
+		else
+		    hashing(client, info, value) 
+		end
 		puts client
 	else 
-		puts "This looks like a new element in the hash,\n Shall we process some new information for you?"
+		puts "This looks like new information for the client,\n Shall we process this new information for you?"
 		new_change = gets.chomp
 		if affirmative.include?(new_change)
 			puts "Ok, which value would you like to assign this key?"
@@ -137,3 +156,7 @@ if affirmative.include?(change)
 else
 	puts "Alright. Thank you for your time."
 end
+
+
+
+
