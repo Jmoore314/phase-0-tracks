@@ -1,26 +1,31 @@
 #define a method for entering informtion into a hash
 
 #ask for user information
-#Name, 
-#age, 
-#number of children, 
-#likes paisley, 
-#likes marble, 
-#favourite type of wood
-#prefers open concept?
-#interior design theme preference
-#other
+	#Name, 
+	#age, 
+	#number of children, 
+	#likes paisley, 
+	#likes marble, 
+	#favourite type of wood
+	#prefers open concept?
+	#interior design theme preference
+	#other
 
 #store user information in variables
 
 #display user information as a hash
+
+#question user if needing to change or add information
+#ensure information is in the correct format
+
+#display any changed information or thank them for their time
 ###################################################
 
 i = 0
 client = {}
 
 #an affirmative statement to include a variety of "yes" answers used later on
-affirmative = ["y", "yes", "yeah", "sure", "definitely", "hell yes", "absolutely"]
+affirmative = ["y", "yes", "yeah", "sure", "definitely", "hell yes", "absolutely", "hell yeah", "why not"]
 
 #Define a method for entering information into hash
 def hashing(client, key, value)
@@ -142,7 +147,7 @@ if affirmative.include?(change)
 		puts client
 	else 
 		puts "This looks like new information for the client,\n Shall we process this new information for you?"
-		new_change = gets.chomp
+		new_change = gets.chomp.downcase
 		if affirmative.include?(new_change)
 			puts "Ok, which value would you like to assign this key?"
 			value = gets.chomp
