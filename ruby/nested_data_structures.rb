@@ -14,7 +14,7 @@ voip_services = {
 	},
 
 	raidcall: {
-		server_name: {
+		server_names: {
 			Trinity: {
 				channel_names: [
 					'Star Trek Online',
@@ -51,9 +51,9 @@ voip_services = {
 	},
 	
 	ventrillo: {
-		server_name: {
+		server_names: {
 			Method_Gaming: {
-				channel_name: [
+				channel_names: [
 					'World of Warcraft'
 				],
 				people_in_server: 78,
@@ -63,9 +63,9 @@ voip_services = {
 	},
 
 	mumble: {
-		server_name: {
+		server_names: {
 			Goon_Squad: {
-				channel_name: [
+				channel_names: [
 					'World of Warcraft',
 					'Descent',
 					'Camping the Stairs',
@@ -76,9 +76,9 @@ voip_services = {
 	},
 
 	discord: {
-		server_name: { 
+		server_names: { 
 			Goonz: {
-				channel_name: [
+				channel_names: [
 					'Blade and Soul',
 					'Overwatch',
 					'Diablo 3',
@@ -98,3 +98,28 @@ voip_services = {
 		}
 	}
 }
+
+p voip_services[:teamspeak_3][:server_names][:Phoenix_Rising][:channel_names][0]
+
+voip_services[:teamspeak_3][:server_names][:Phoenix_Rising][:channel_names] << "Oh Hey Der"
+
+p voip_services[:teamspeak_3][:server_names][:Phoenix_Rising][:channel_names]
+
+p voip_services[:skype][:people_on_call][3]
+
+voip_services[:skype][:people_on_call].delete_if { |person| person != 'Bart' }
+
+p voip_services[:skype][:people_on_call]
+
+p voip_services
+
+#everyone hates skype and raidcall
+
+voip_services.keep_if { |service, server| service.to_s != "skype"}
+
+p voip_services
+
+voip_services.delete_if { |service, server| service.to_s == "raidcall" }
+
+p voip_services
+
