@@ -40,3 +40,17 @@ end
 p array_names
 
 p hash_ages
+
+
+#################
+#Release 2
+
+numbers_array = [1, 2, 3, 4, 5]
+
+numbers_array.delete_if { |number| number <3 }
+
+numbers_array.keep_if { |number| number == 4 }
+
+numbers_array.reject { |number| number > 4 }
+
+numbers_array.select { |number| number.odd? }
