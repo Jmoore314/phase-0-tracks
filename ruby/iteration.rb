@@ -45,6 +45,8 @@ p hash_ages
 #################
 #Release 2
 
+#Arrays
+
 numbers_array = [1, 2, 3, 4, 5]
 
 numbers_array.delete_if { |number| number <3 }
@@ -54,3 +56,15 @@ numbers_array.keep_if { |number| number == 4 }
 numbers_array.reject { |number| number > 4 }
 
 numbers_array.select { |number| number.odd? }
+
+#Hashs
+
+letters_hash = {:a => 1, :b => 2, :c => 3, :d => 4 }
+
+letters_hash.delete_if { |letter, number| letter.to_s > "c" }
+
+letters_hash.keep_if { |letter, number| letter > :c }
+
+letters_hash.reject { |letter, number| number == 3 }
+
+letters_hash.select { |letter, number| number.even? }
