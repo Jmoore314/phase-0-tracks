@@ -2,7 +2,9 @@
 #reverse first and last names
 #method for when vowels occur in strings to advance by 1 in that string
 #method for consonants to occur to advance them by 1
-#join the strings back together and capitalize
+#join the strings back together and capitalize where appropriate
+#store all items in a hash
+#print message of all items in a hash
 
 def split_reverse(string)
 	new_strings = string.split(' ')
@@ -38,10 +40,9 @@ end
 #consonant("b")
 
 def upcase(letter)
-	consonants = "BCDFGHJKLMNPQRSTVWXYZ"
-    vowels = "AEIOU"
+    consonants = "bcdfghjklmnpqrstvwxyz"
     letter_downcase = letter.downcase
-	if consonants.include?(letter)
+	if consonants.include?(letter_downcase)
 		consonant(letter_downcase).upcase
 	else
 		vowel(letter_downcase).upcase
@@ -50,6 +51,12 @@ end
 
 #upcase("A")
 #upcase("B")
+
+def special_char(char)
+    char
+end
+
+#special_char("!")
 
 def join(array)
     joining = array.map! { |name|
@@ -69,8 +76,10 @@ def cypher(name)
 			 	consonant(char)
 			elsif vowels.include?(char) 
 				vowel(char)
-			else 
+			elsif consonants.upcase.include?(char) || vowels.upcase.include?(char) 
 				upcase(char)
+			else
+				special_char(char)
 			end
 		}
 	}
@@ -81,10 +90,28 @@ end
 #cypher("Felicia Torres")
 #cypher("JoHn MoOrE")
 #cypher("FeLiCiA ToRrEs")
+#cypher("De'Marco")
 
-puts "Welcome to Spys-Я-Us! \nPlease enter your real name to recieve your very own spy name!"
-name = gets.chomp
+puts "Welcome to Spys-Я-Us! \nPlease enter your real name to recieve your very own spy name! \nWhen you are done, just type \"Quit\""
+name = ""
+spy_names = {}
 
-cypher(name)
+while name.downcase != "quit"
+    name = gets.chomp
+    break if name == "quit"
+    puts "I've translated your name to be \'" + cypher(name) + "\'"
+    symbol_name = name.to_sym
+    spy_names[symbol_name] = cypher(name)
+end
+
+if name == "quit"
+    puts "The following are all of the names entered into our database:"
+    spy_names.each { |key_name, translated_name|
+        puts "\'#{key_name}\' is known as \'#{translated_name}\'"
+    }
+end
+
+
+
 
 
