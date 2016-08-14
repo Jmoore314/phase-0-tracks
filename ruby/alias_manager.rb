@@ -98,20 +98,15 @@ spy_names = {}
 
 while name.downcase != "quit"
     name = gets.chomp
-    break if name == "quit"
+    break if name.downcase == "quit"
     puts "I've translated your name to be \'" + cypher(name) + "\'"
     symbol_name = name.to_sym
     spy_names[symbol_name] = cypher(name)
 end
 
-if name == "quit"
+if name.downcase == "quit"
     puts "The following are all of the names entered into our database:"
     spy_names.each { |key_name, translated_name|
         puts "\'#{key_name}\' is known as \'#{translated_name}\'"
     }
 end
-
-
-
-
-
