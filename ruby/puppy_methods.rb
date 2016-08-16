@@ -38,35 +38,57 @@ class Puppy
 
 end
 
-spot = Puppy.new
-spot.fetch('Ball')
-spot.speak(4)
-spot.roll_over
-spot.dog_years(7)
-spot.give_paw
+#spot = Puppy.new
+#spot.fetch('Ball')
+#spot.speak(4)
+#spot.roll_over
+#spot.dog_years(7)
+#spot.give_paw
 
-#class Soccer_player
-#
-#	def initialize
-#		puts "Initializing new Soccer_player instance ..."
-#	end
-#
-#	def scored(number_of_goals)
-#		number_of_goals.times { puts "Your player just scored! Goooooool!" }
-#	end
-#
-#	def red_card(number_of_red_cards)
-#		puts "Your player has recieved #{number_of_red_cards} red cards"
-#	end
-#
-#	def saved(number_of_goals_saved)
-#		puts "Your player saved #{number_of_goals_saved} goals. What a player!"
-#	end
-#
-#end
-#
+class Soccer_player
+
+	def initialize
+		puts "Initializing new Soccer_player instance ..."
+	end
+
+	def scored(number_of_goals)
+		number_of_goals.times { puts "Your player just scored! Goooooool!" }
+	end
+
+	def red_card(number_of_red_cards)
+		puts "Your player has recieved #{number_of_red_cards} red cards"
+	end
+
+	def saved(number_of_goals_saved)
+		puts "Your player saved #{number_of_goals_saved} goals. What a player!"
+	end
+
+end
+
 #Imbramovic = Soccer_player.new
 #Imbramovic.scored(9)
 #Imbramovic.red_card(2)
 #Imbramovic.saved(3)
+
+#make new people for 50 instances of class
+#store them all in a data structure
+player_name= []
+
+for i in 1..50
+	player_name << "player_#{i}"
+	player_name[i - 1] = Soccer_player.new
+end
+
+#for each item of the soccer player class do these methods with random numbers
+player_name.each do |player|
+   cards = rand(2) 
+   saves = rand(30)
+   goals = rand(5)
+   player.scored(goals)
+   player.red_card(cards)
+   player.saved(saves)
+end
+
+
+
 
