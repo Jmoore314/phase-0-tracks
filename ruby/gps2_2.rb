@@ -100,3 +100,5 @@ remove_item(grocery_list, "lemonade")
 update_item(grocery_list, "ice cream", 1)
 
 p print_groceries(grocery_list)
+
+#thought about refactoring the downcased item but decided against it since each method only performs 1 or 2 task
