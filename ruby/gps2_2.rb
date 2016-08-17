@@ -38,12 +38,11 @@ def create_list(string_of_items)
 	grocery_list = Hash.new 0
 	grocery_list_array = string_of_items.split(' ')
 	grocery_list_array.each do |item|
-		grocery_list[item.to_sym] = 1
+		downcased_item = item.downcase.to_sym
+		grocery_list[downcased_item] = 1
 	end
 	grocery_list
 end
-
-p grocery_list = create_list("carrots apples cereal pizza")
 
 #2nd method
 #add item to list with a quantity to the list (3 arguments)
@@ -51,11 +50,9 @@ p grocery_list = create_list("carrots apples cereal pizza")
 #return the final hash 
 
 def add_item(grocery_list, item, quantity)
-	grocery_list[item.to_sym] += quantity
-	grocery_list
+	downcased_item = item.downcase.to_sym
+	grocery_list[downcased_item] += quantity
 end
-
-p add_item(grocery_list, "oranges", 4)
 
 #3rd method
 #method takes the item to be deleted and hash
@@ -63,14 +60,43 @@ p add_item(grocery_list, "oranges", 4)
 #return the final hash
 
 def remove_item(grocery_list, item)
-	grocery_list[item.to_sym] = 0
+	downcased_item = item.downcase.to_sym
+	grocery_list[downcased_item] = 0
 end
 
-p remove_item(grocery_list, "oranges")
-p grocery_list
+#p grocery_list
+
 #4th method 
+#update quantity
 #method will take 3 arguments (hash item quantity)
 #hash[item] = quantity
 
+def update_item(grocery_list, item, quantity)
+	downcased_item = item.downcase.to_sym
+	grocery_list[downcased_item] = quantity
+end
+
+#p grocery_list
+
 #5th method
 #print the final hash through iteration, within block we can print custom string
+
+def print_groceries(grocery_list)
+	puts "We Need:"
+	grocery_list.each do |item, quantity|
+		puts "#{quantity} #{item}." if quantity > 0
+	end
+end
+
+grocery_list = create_list("carrots apples cereal pizza")
+
+add_item(grocery_list, "lemonade", 2)
+add_item(grocery_list, "tomatoes", 3)
+add_item(grocery_list, "onions", 1)
+add_item(grocery_list, "ice cream", 4)
+
+remove_item(grocery_list, "lemonade")
+
+update_item(grocery_list, "ice cream", 1)
+
+p print_groceries(grocery_list)
