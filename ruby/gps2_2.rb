@@ -34,7 +34,6 @@
 #iterate over the array to add each item to the hash with the quantity of 1
 #print the final hash with quantities
 
-
 def create_list(string_of_items)
 	grocery_list = Hash.new 0
 	grocery_list_array = string_of_items.split(' ')
@@ -44,17 +43,25 @@ def create_list(string_of_items)
 	grocery_list
 end
 
-p create_list("carrots apples cereal pizza")
+p grocery_list = create_list("carrots apples cereal pizza")
 
 #2nd method
 #add item to list with a quantity to the list (3 arguments)
 #hash[item] += quantity
 #return the final hash 
 
+def add_item(grocery_list, item, quantity)
+	grocery_list[item.to_sym] += quantity
+	grocery_list
+end
+
+p add_item(grocery_list, "oranges", 4)
+
 #3rd method
 #method takes the item to be deleted and hash
 #removing an item from the list (any items with 0 do not print key)
 #return the final hash
+
 
 #4th method 
 #method will take 3 arguments (hash item quantity)
