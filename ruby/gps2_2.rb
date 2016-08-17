@@ -62,7 +62,12 @@ p add_item(grocery_list, "oranges", 4)
 #removing an item from the list (any items with 0 do not print key)
 #return the final hash
 
+def remove_item(grocery_list, item)
+	grocery_list[item.to_sym] = 0
+end
 
+p remove_item(grocery_list, "oranges")
+p grocery_list
 #4th method 
 #method will take 3 arguments (hash item quantity)
 #hash[item] = quantity
