@@ -27,7 +27,11 @@ class Santa
 	end
 
 	def eat_milk_and_cookies(cookie)
-		puts "That was a good #{cookie} cookie!"
+		if cookie.downcase == "salt"
+			puts "Omg  a #{cookie} cookie?!?! COAL FOR YOU!"
+		else
+			puts "That was a good #{cookie} cookie!"
+		end
 	end
 
 	def initialize(gender, ethnicity)
