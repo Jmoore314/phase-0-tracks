@@ -188,14 +188,28 @@ end
 			#end
 	#End
 
-#gets an affirmative answer, used later
-affirmative = ["yes", "yeah", "sure", "ok", "hell yes", "hell yeah", "definitely", "mmhmm"]
+#simplification method for automation
+def automation(create_inspectors, inspectors, example_names, example_genders, example_names)
+		x = inspectors.length# takes into account that user input will add length to various arrays
+		a = example_names.length # takes into account that user input will add length to various arrays
+		b = example_genders.length# takes into account that user input will add length to various arrays
+		c = example_ethnicities.length# takes into account that user input will add length to various arrays
+		(create_inspectors - x).times do 
+			l = rand(0..a) #creating 3 random numbers every loop
+			m = rand(0..b)
+			n = rand(0..c)
+			inspectors << Inspector.new(example_names[l], example_genders[m], example_ethnicities[n])
+		end
+end
 
+#gets an affirmative or negative answer, used later
+affirmative = ["yes", "yeah", "sure", "ok", "hell yes", "hell yeah", "definitely", "mmhmm", "yes please", "please", "affirmative"]
+negative = ["no", "nah", "nope", "no thanks", "negative", "no way", "hell no", "hell nah"]
 #store inspectors
 inspectors = []
-example_genders = ["Agender", "Female", "Bigender", "Male", "Female", "Gender fluid", "N/A"]
-example_ethnicities = ["Black", "Latino", "white", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-example_names = ["Tom", "Mary", "Ellen", "Tyra", "James", "Dave", "Keith"] 
+example_genders = ["Agender", "Female", "Bigender", "Male", "Androgyne", "Gender fluid", "N/A"]
+example_ethnicities = ["Black", "Latino", "White", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+example_names = ["Harper", "Hayden", "Jamie", "Jesse", "Jordan", "Julian", "Alex", "Elliot"] 
 
 #USER INTERFACE
 puts "Welcome to the Inspector simulator!"
@@ -217,25 +231,74 @@ while create_valid == false
 	end
 end
 
-puts "Would you like to automate the creation process?"
-automate = gets.chomp
+automate_valid = false
+while automate_valid == false
+	puts "Would you like to automate the creation process?"
+	automate = gets.chomp.downcase
+	
+	if affirmative.include?(automate)
+		automation(create_inspectors, inspectors, example_names, example_genders, example_ethnicities)
+		automate_valid = true
+	elsif negative.include?(automate)
+		"Ok, we can begin customizing your inspector(s) now, \n Should you decide to automate the rest of the process: you can do so after creating an inspector"
+		create_inspectors.times do |i|
+			Puts "What would you like to name your ##{i} inspector?"
+			name = gets.chomp.to_s.capitalize
+			if !example_names.include?(name) #add the user inputted name to the example_names if our example does not include it already
+				example_names << name
+			end
 
-if affirmative.include?(automate)
-	create_inspectors.times do 
-		n = rand(0..6) #creating 3 random numbers every loop
-		m = rand(0..6)
-		l = rand(0..6)
-		inspectors << Inspector.new(example_names[l], example_genders[n], example_ethnicities[m])
+			Puts "What gender is your inspector, (all genders are accepted here ^_^)"
+			gender = gets.chomp.to_s.capitalize
+			if !example_genders.include?(gender)
+				example_genders << gender
+			end
+
+			Puts "What is your inspector's ethnicity, (all ethnicities are also accepted here ^_^)"
+			ethnicity = gets.chomp.to_s.capitalize
+			if !example_ethnicities.include?(ethnicity)
+				example_ethnicities << ethnicity
+			end
+
+			Puts "Ok, let's enter your inspector's information into our roster..."
+			inspectors << Inspector.new(name, gender, ethnicity)
+
+			Puts "Your inspector's information is entered into our roster"
+
+			if (i + 1) < create_inspectors #asks to automate or create another if iteration is less than desired amount
+				Puts "Would you like to customize another inspector? \n NOTE: Answer 'no' if you would like to automate the rest."
+				custom_another = gets.chomp.downcase
+
+				if affirmative.include?(custom_another)
+					puts "Ok, let's create another..."
+				elsif negative.include?(custom_another)
+					puts "Would you like to automate the rest of your inspectors?"
+					automate = gets.chomp.downcase
+					if affirmative.include?(automate)
+						automation(create_inspectors, inspectors, example_names, example_genders, example_ethnicities)
+					else 
+						puts "Ok, let's create another then"
+					end
+				end
+			end
+		end
+		automate_valid = true
+	else
+		puts "It looks like you gave me an answer I cannot understand, \n Please answer in a 'yes' or 'no' manner"
 	end
+end
 
+puts "Now that we are done creating the inspectors, \nLet's show you all of the information we have ont he roster. \n Please push 'enter' to continue"
+gets.chomp
 
-
-
-
-
-
-
-
-
-
-
+inspectors.each do |inspector|
+	puts "X" * 60
+	p inspector.name
+	p inspector.age
+	p inspector.gender
+	p inspector.ethnicity
+	p inspector.ccpref
+	p inspector.rank
+	p inspector.cases_solved
+	p inspector.alcohol_tol
+end
