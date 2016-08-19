@@ -1,3 +1,5 @@
+#CLASS PSUEDOCODE
+
 # design a new class - inspector
 	# initialize with
 		# attribute 1 - age (defaulted)
@@ -29,14 +31,12 @@
 							# puts "name" starts to feel a little tipsy
 						# when already past 5 then
 							# puts "name" starts to hiccup and appear quite well off
-							# alcohol tollerance + 1
 						# when already past 8 then
 							# puts "name" appears very drunk and is slurring their words
-							# alcohol tollerance + 1 
 						# when 10 then 
 							# puts "name" blacks out
-							# alcohol tollerance + 1
 						#end
+						# alcohol tollerance + 1
 					#end 
 					#puts "name" retires to their residence and concludes their night out
 			# break if drinks > alcohol tollerance
@@ -51,6 +51,7 @@
 	# attr_reader ethnicity, age, cases solved, rank, alcohol tollerance
 # end
 
+#CLASS CODING
 class Inspector
 
 	def initialize(name, gender, ethnicity)
@@ -140,7 +141,7 @@ class Inspector
 end
 
 
-#DRIVER CODE
+#DRIVER CODE TESTING THE CLASS
 #inspectors = []
 #example_genders = ["Agender", "Female", "Bigender", "Male", "Female", "Gender fluid", "N/A"]
 #example_ethnicities = ["Black", "Latino", "white", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
@@ -172,7 +173,7 @@ end
 #	inspector.caffeine
 #end
 
-#USER INTERFACE
+#USER INTERFACE PSUEDOCODE
 #welcome users to program
 #ask how many inspectors they would like to make, limit to 100,000
 #ask for user input if they would like to automate this process
@@ -186,9 +187,12 @@ end
 			# else
 				#repeat input cycle to make new custom inspector 
 			#end
-	#End
+	#end
+#When finished entering code, print out the resulting inspectors
 
-#simplification method for automation
+
+
+#simplification method for automation #REFACTORING
 def automation(create_inspectors, inspectors, example_names, example_genders, example_ethnicities)
 	a = (example_names.length - 1)# takes into account that user input will add length to various arrays
 	b = (example_genders.length - 1)# takes into account that user input will add length to various arrays
