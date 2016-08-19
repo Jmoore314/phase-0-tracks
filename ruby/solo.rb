@@ -301,7 +301,7 @@ while automate_valid == false
 	end
 end
 
-puts "Now that we are done creating the inspectors, \nLet's show you all of the information we have ont he roster. \n Please push 'enter' to continue"
+puts "Now that we are done creating the inspectors, \nLet's show you all of the information we have on the roster. \n Please push 'enter' to continue"
 gets.chomp
 
 inspectors.each do |inspector|
