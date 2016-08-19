@@ -189,27 +189,34 @@ end
 	#End
 
 #simplification method for automation
-def automation(create_inspectors, inspectors, example_names, example_genders, example_names)
-		x = inspectors.length# takes into account that user input will add length to various arrays
-		a = example_names.length # takes into account that user input will add length to various arrays
-		b = example_genders.length# takes into account that user input will add length to various arrays
-		c = example_ethnicities.length# takes into account that user input will add length to various arrays
-		(create_inspectors - x).times do 
-			l = rand(0..a) #creating 3 random numbers every loop
-			m = rand(0..b)
-			n = rand(0..c)
-			inspectors << Inspector.new(example_names[l], example_genders[m], example_ethnicities[n])
-		end
+def automation(create_inspectors, inspectors, example_names, example_genders, example_ethnicities)
+	a = (example_names.length - 1)# takes into account that user input will add length to various arrays
+	b = (example_genders.length - 1)# takes into account that user input will add length to various arrays
+	c = (example_ethnicities.length - 1)# takes into account that user input will add length to various arrays
+	
+	leftover_creations = create_inspectors - inspectors.length
+	
+	leftover_creations.times do 
+		l = rand(0..a) #creating 3 random numbers every loop
+		m = rand(0..b)
+		n = rand(0..c)
+		inspectors << Inspector.new(example_names[l], example_genders[m], example_ethnicities[n])
+	end
 end
 
 #gets an affirmative or negative answer, used later
-affirmative = ["yes", "yeah", "sure", "ok", "hell yes", "hell yeah", "definitely", "mmhmm", "yes please", "please", "affirmative"]
-negative = ["no", "nah", "nope", "no thanks", "negative", "no way", "hell no", "hell nah"]
-#store inspectors
+affirmative = ["y", "yes", "yeah", "sure", "ok", "hell yes", "hell yeah", "definitely", "mmhmm", "yes please", "please", "affirmative"]
+negative = ["n", "no", "nah", "nope", "no thanks", "negative", "no way", "hell no", "hell nah"]
+
+#storing information for inspectors array
 inspectors = []
 example_genders = ["Agender", "Female", "Bigender", "Male", "Androgyne", "Gender fluid", "N/A"]
 example_ethnicities = ["Black", "Latino", "White", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
 example_names = ["Harper", "Hayden", "Jamie", "Jesse", "Jordan", "Julian", "Alex", "Elliot"] 
+
+#information used for later 
+caffeine_intake_methods = ["Coffee", "Green Tea", "English Tea w/ Milk", "Oolong Tea", "Espresso", "Cafe Americano", "Red Bull", "Energy Drinks", "Caffeine pills", "N/A"]
+
 
 #USER INTERFACE
 puts "Welcome to the Inspector simulator!"
@@ -224,7 +231,7 @@ while create_valid == false
 		puts "It appears you have either entered a string or 0, \nPlease enter a valid integer between 1 and 100,000"
 	elsif create_inspectors < 0 
 		puts "It appears you have entered a negative integer, \n Please enter a valid integer between 1 and 100,000"
-	elsif create_inspectors > 100,000
+	elsif create_inspectors > 100000
 		puts "It appears you have entered an integer greater than 100,000, Please enter a valid integer between 1 and 100,000"
 	else
 		create_valid = true 
@@ -242,31 +249,32 @@ while automate_valid == false
 	elsif negative.include?(automate)
 		"Ok, we can begin customizing your inspector(s) now, \n Should you decide to automate the rest of the process: you can do so after creating an inspector"
 		create_inspectors.times do |i|
-			Puts "What would you like to name your ##{i} inspector?"
+			number_of_inspector = i + 1
+			puts "What would you like to name your ##{number_of_inspector} inspector?"
 			name = gets.chomp.to_s.capitalize
 			if !example_names.include?(name) #add the user inputted name to the example_names if our example does not include it already
 				example_names << name
 			end
 
-			Puts "What gender is your inspector, (all genders are accepted here ^_^)"
+			puts "What gender is your inspector, (all genders are accepted here ^_^)"
 			gender = gets.chomp.to_s.capitalize
 			if !example_genders.include?(gender)
 				example_genders << gender
 			end
 
-			Puts "What is your inspector's ethnicity, (all ethnicities are also accepted here ^_^)"
+			puts "What is your inspector's ethnicity, (all ethnicities are also accepted here ^_^)"
 			ethnicity = gets.chomp.to_s.capitalize
 			if !example_ethnicities.include?(ethnicity)
 				example_ethnicities << ethnicity
 			end
 
-			Puts "Ok, let's enter your inspector's information into our roster..."
+			puts "Ok, let's enter your inspector's information into our roster..."
 			inspectors << Inspector.new(name, gender, ethnicity)
 
-			Puts "Your inspector's information is entered into our roster"
+			puts "Your inspector's information is entered into our roster"
 
 			if (i + 1) < create_inspectors #asks to automate or create another if iteration is less than desired amount
-				Puts "Would you like to customize another inspector? \n NOTE: Answer 'no' if you would like to automate the rest."
+				puts "Would you like to customize another inspector? \n NOTE: Answer 'no' if you would like to automate the rest."
 				custom_another = gets.chomp.downcase
 
 				if affirmative.include?(custom_another)
@@ -276,6 +284,7 @@ while automate_valid == false
 					automate = gets.chomp.downcase
 					if affirmative.include?(automate)
 						automation(create_inspectors, inspectors, example_names, example_genders, example_ethnicities)
+						break
 					else 
 						puts "Ok, let's create another then"
 					end
@@ -292,13 +301,15 @@ puts "Now that we are done creating the inspectors, \nLet's show you all of the 
 gets.chomp
 
 inspectors.each do |inspector|
-	puts "X" * 60
-	p inspector.name
-	p inspector.age
-	p inspector.gender
-	p inspector.ethnicity
-	p inspector.ccpref
-	p inspector.rank
-	p inspector.cases_solved
-	p inspector.alcohol_tol
+	puts "X" * 70
+	puts "Inspector's Name: #{inspector.name}"
+	puts "This inspector is #{inspector.age} years old"
+	puts "This inspector's gender is #{inspector.gender}"
+	puts "This inspector's ethnicity is #{inspector.ethnicity}"
+	#adding a random caffeine intake preference
+	inspector.ccpref = caffeine_intake_methods.sample
+	puts "This inspector prefers #{inspector.ccpref} as a source of caffeine"
+	puts "This inspector's rank is #{inspector.rank}"
+	puts "This inspector has solved #{inspector.cases_solved} cases"
+	puts "This inspector's alcohol tollerance is #{inspector.alcohol_tol} out of 10"
 end
