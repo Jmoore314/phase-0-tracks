@@ -130,9 +130,8 @@ class Inspector
 		@age += 1
 	end
 
-	def caffeine(drink)
+	def caffeine
 		puts "#{@name} enjoys a fresh cup of #{@ccpref}"
-		@ccpref = drink
 	end
 
 	attr_reader :ethnicity, :age, :cases_solved, :rank, :alcohol_tol
@@ -142,36 +141,92 @@ end
 
 
 #DRIVER CODE
+#inspectors = []
+#example_genders = ["Agender", "Female", "Bigender", "Male", "Female", "Gender fluid", "N/A"]
+#example_ethnicities = ["Black", "Latino", "white", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+#array_of_names = ["Tom", "Mary", "Ellen", "Tyra", "James", "Dave", "Keith"]
+#5.times do #my processor got very hot, but I could do 1,000,000 in about 5 minutes
+#	n = rand(0..6)
+#	m = rand(0..6)
+#	l = rand(0..6)
+#	inspectors << Inspector.new(array_of_names[l], example_genders[n], example_ethnicities[m])
+#end
+#
+#
+#inspectors.each do |inspector|
+#	puts "X" * 60
+#	p inspector.name
+#	p inspector.age
+#	p inspector.gender
+#	p inspector.ethnicity
+#	p inspector.ccpref
+#	p inspector.rank
+#	p inspector.cases_solved
+#	p inspector.alcohol_tol
+#	rand(1..10).times do 
+#		inspector.promotion
+#	end
+#	p inspector.rank
+#	inspector.paperwork
+#	inspector.question("townsfolk")
+#	inspector.caffeine
+#end
+
+#USER INTERFACE
+#welcome users to program
+#ask how many inspectors they would like to make, limit to 100,000
+#ask for user input if they would like to automate this process
+	#if affirmative answer 
+		#then automate all of the inspectors
+	#else 
+		# input the inspectors one by one
+		# ask again if want to automate the rest
+			# If yes 
+				#then automate the rest
+			# else
+				#repeat input cycle to make new custom inspector 
+			#end
+	#End
+
+#gets an affirmative answer, used later
+affirmative = ["yes", "yeah", "sure", "ok", "hell yes", "hell yeah", "definitely", "mmhmm"]
+
+#store inspectors
 inspectors = []
 example_genders = ["Agender", "Female", "Bigender", "Male", "Female", "Gender fluid", "N/A"]
 example_ethnicities = ["Black", "Latino", "white", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-array_of_names = ["Tom", "Mary", "Ellen", "Tyra", "James", "Dave", "Keith"]
-#reinder ranking array below is for testing only, n order to randomize reinder rankings
-5.times do #my processor got very hot, but I could do 1,000,000 in about 5 minutes
-	n = rand(0..6)
-	m = rand(0..6)
-	l = rand(0..6)
-	inspectors << Inspector.new(array_of_names[l], example_genders[n], example_ethnicities[m])
-end
+example_names = ["Tom", "Mary", "Ellen", "Tyra", "James", "Dave", "Keith"] 
 
+#USER INTERFACE
+puts "Welcome to the Inspector simulator!"
 
-inspectors.each do |inspector|
-	puts "X" * 60
-	p inspector.name
-	p inspector.age
-	p inspector.gender
-	p inspector.ethnicity
-	p inspector.ccpref
-	p inspector.rank
-	p inspector.cases_solved
-	p inspector.alcohol_tol
-	rand(1..100).times do 
-		inspector.solve_case
+puts "Here you are able to simulate creating Inspectors"
+
+create_valid = false
+while create_valid == false
+	puts "How many Inspectors would you like to create?"
+	create_inspectors = gets.chomp.to_i
+	if create_inspectors == 0 
+		puts "It appears you have either entered a string or 0, \nPlease enter a valid integer between 1 and 100,000"
+	elsif create_inspectors < 0 
+		puts "It appears you have entered a negative integer, \n Please enter a valid integer between 1 and 100,000"
+	elsif create_inspectors > 100,000
+		puts "It appears you have entered an integer greater than 100,000, Please enter a valid integer between 1 and 100,000"
+	else
+		create_valid = true 
 	end
-	p inspector.cases_solved
 end
 
+puts "Would you like to automate the creation process?"
+automate = gets.chomp
 
+if affirmative.include?(automate)
+	create_inspectors.times do 
+		n = rand(0..6) #creating 3 random numbers every loop
+		m = rand(0..6)
+		l = rand(0..6)
+		inspectors << Inspector.new(example_names[l], example_genders[n], example_ethnicities[m])
+	end
 
 
 
