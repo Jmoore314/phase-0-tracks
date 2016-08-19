@@ -90,9 +90,32 @@ class Inspector
 	def pub(drinks)
 		ranks = ["Retired", "Constable", "Sergeant", "Inspector", "Chief Inspector", "Superintendant", "Chief Superintendant"]
 		if ranks.index(@rank) > 4
-			puts  
+			puts "I think that would be setting a poor example to your colleagues \nYou should try your hand at a round of golf with your peers"
 		else 
-			drinks.times do 
+			drinks.times do |i|
+				if i == @alcohol_tol
+					puts "#{@name} doesn't look so good, they decide to head home by cab because they know their limit"
+					break
+				end
+				case i 
+				when 9
+					puts "#{@name} slams another drink"
+					if ranks.index(@rank) == 0
+						puts "#{@name} blacks out, you're a regular old boozer at this point..."
+					else
+						puts "#{@name} blacks out, this can't look good to their peers..."
+					end
+				when > 7
+					puts "#{@name} pounds down another round \nthey appear very drunk at this point and are slurring their words"
+				when > 4
+					puts "#{@name} has themselves another round and thinks to themself\nI starting to consider this to be a rather expensive habit... \nThey appear quite well off and hiccuping"
+				when > 1
+					puts "#{@name} enjoys another fresh brew with the locals \nThey appear to be slightly tipsy and enjoying themself"
+				when >= 0
+					puts "#{@name} enjoys a round with friends"
+				end  
+			end
+			@alcohol_tol += 1  
 		end 
 	end
 
@@ -104,9 +127,12 @@ class Inspector
 		@age += 1
 	end
 
-	def 
+	def caffeine(drink)
+		puts "#{@name} enjoys a fresh cup of #{@ccpref}"
+		@ccpref = drink
+	end
 
-	attr_reader
+	attr_reader :ethnicity, :age, :cases_solved, :rank, :alcohol_tol
 	attr_accessor :name, :gender, :ccpref
 
 end
