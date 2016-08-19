@@ -62,6 +62,7 @@ class Inspector
 		@cases_solved = 0 
 		@rank = "Constable"
 		@alcohol_tol = 2
+		puts "Initializing Inspector instance #{@name} with #{@gender} gender and #{@ethnicity} ethnicity"
 	end
 
 	def promotion
@@ -90,30 +91,32 @@ class Inspector
 	def pub(drinks)
 		ranks = ["Retired", "Constable", "Sergeant", "Inspector", "Chief Inspector", "Superintendant", "Chief Superintendant"]
 		if ranks.index(@rank) > 4
-			puts "I think that would be setting a poor example to your colleagues \nYou should try your hand at a round of golf with your peers"
+			puts "I think that would be setting a poor example to your colleagues \n You should try your hand at a round of golf with your peers"
 		else 
+			#p drinks #for testing purposes
 			drinks.times do |i|
 				if i == @alcohol_tol
 					puts "#{@name} doesn't look so good, they decide to head home by cab because they know their limit"
 					break
-				end
-				case i 
-				when 9
+				elsif i == 9
 					puts "#{@name} slams another drink"
 					if ranks.index(@rank) == 0
 						puts "#{@name} blacks out, you're a regular old boozer at this point..."
 					else
 						puts "#{@name} blacks out, this can't look good to their peers..."
 					end
-				when > 7
-					puts "#{@name} pounds down another round \nthey appear very drunk at this point and are slurring their words"
-				when > 4
-					puts "#{@name} has themselves another round and thinks to themself\nI starting to consider this to be a rather expensive habit... \nThey appear quite well off and hiccuping"
-				when > 1
-					puts "#{@name} enjoys another fresh brew with the locals \nThey appear to be slightly tipsy and enjoying themself"
-				when >= 0
+				elsif i > 7
+					puts "#{@name} pounds down another round \n they appear very drunk at this point and are slurring their words"
+				elsif i > 4
+					puts "#{@name} has themselves another round and thinks to themself\n I'm starting to consider this to be a rather expensive habit... \n They appear quite well off and hiccuping"
+				elsif i > 1
+					puts "#{@name} enjoys another fresh brew with the locals \n They appear to be slightly tipsy and enjoying themself"
+				else
 					puts "#{@name} enjoys a round with friends"
 				end  
+			end
+			if drinks <= @alcohol_tol
+				puts "#{@name} decides to head home by cab after a great night."
 			end
 			@alcohol_tol += 1  
 		end 
@@ -138,8 +141,35 @@ class Inspector
 end
 
 
+#DRIVER CODE
+inspectors = []
+example_genders = ["Agender", "Female", "Bigender", "Male", "Female", "Gender fluid", "N/A"]
+example_ethnicities = ["Black", "Latino", "white", "Japanese-African", "Prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+array_of_names = ["Tom", "Mary", "Ellen", "Tyra", "James", "Dave", "Keith"]
+#reinder ranking array below is for testing only, n order to randomize reinder rankings
+5.times do #my processor got very hot, but I could do 1,000,000 in about 5 minutes
+	n = rand(0..6)
+	m = rand(0..6)
+	l = rand(0..6)
+	inspectors << Inspector.new(array_of_names[l], example_genders[n], example_ethnicities[m])
+end
 
 
+inspectors.each do |inspector|
+	puts "X" * 60
+	p inspector.name
+	p inspector.age
+	p inspector.gender
+	p inspector.ethnicity
+	p inspector.ccpref
+	p inspector.rank
+	p inspector.cases_solved
+	p inspector.alcohol_tol
+	rand(1..100).times do 
+		inspector.solve_case
+	end
+	p inspector.cases_solved
+end
 
 
 
