@@ -23,10 +23,20 @@ function algos(array) {
 	console.log(new_array[0])
 }
 
+/*create a funtion with 2 arguments for objects that act as a hash
+create a new array
+create a new variable that equals ""
+loop through first object
+	push the first key value pair from the first object into it
+	loop through the second array 
+	if the pair in the new array matches the second break loops and return true
+	else return false*/
+
+
+
 // Driver code
 
-algos(["long phrase","longest phrase","longer phrase"])
-algos(["hey there", "yo I'm a string", "my brother is a cool guy", "this is by far the longest string in the array", "I like to eat chicken on holidays"])
-algos(["number 1", "number2", "             ", "there are plenty of fish in the sea", "sometimes I like to pretend I'm a turtle and then go out into the world and experience life"])
-
+//algos(["long phrase","longest phrase","longer phrase"])
+//algos(["hey there", "yo, I'm a string", "my brother is a cool guy", "this is by far the longest string in the array", "I like to eat chicken on holidays"])
+//algos(["number 1", "number2", "             ", "there are plenty of fish in the sea", "sometimes I like to pretend I'm a turtle and then go out into the world and experience life"])
 
