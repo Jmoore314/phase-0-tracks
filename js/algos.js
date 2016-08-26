@@ -25,14 +25,26 @@ function algos(array) {
 
 /*create a funtion with 2 arguments for objects that act as a hash
 create a new array
-create a new variable that equals ""
 loop through first object
 	push the first key value pair from the first object into it
 	loop through the second array 
 	if the pair in the new array matches the second break loops and return true
 	else return false*/
 
-
+function pairing(obj1, obj2) {
+	var test_hash = {}
+	var loop_until = false
+	for ( i = 0; i < Object.keys(obj1).length; i++) {
+		Object.keys(test_hash)[0] = Object.keys(obj1)[i]
+		Object.values(test_hash)[0] = Object.values(obj1)[i]
+		for ( i = 0; i < Object.keys(obj2).length; i++) {
+			if (Object.keys(test_hash)[0] == Object.keys(obj2)[i] && Object.values(test_hash)[0] == Object.values(obj2)[i]) {
+				loop_until = true
+			}
+		}
+	}
+	console.log(loop_until)
+}
 
 // Driver code
 
