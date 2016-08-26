@@ -7,7 +7,7 @@ if the string is larger than the first in the new array
 then delete the first in the new array and add the string that is longer
 continue looping through original array until the end and return the new arrays 0 element*/
 
-funciton algos(array) {
+function algos(array) {
 	var new_array = []
 	for (i = 0; i < array.length; i++ ) {
 		if (i == 0) {
@@ -22,3 +22,11 @@ funciton algos(array) {
 	console.log("The longest item in the array is:")
 	console.log(new_array[0])
 }
+
+// Driver code
+
+algos(["long phrase","longest phrase","longer phrase"])
+algos(["hey there", "yo I'm a string", "my brother is a cool guy", "this is by far the longest string in the array", "I like to eat chicken on holidays"])
+algos(["number 1", "number2", "             ", "there are plenty of fish in the sea", "sometimes I like to pretend I'm a turtle and then go out into the world and experience life"])
+
+
