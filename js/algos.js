@@ -52,17 +52,50 @@ function pairing(object_1, object_2) {
 	console.log(loop_check);
 }
 
+/*create a function that takes an integer as an argument
+create 2 random variables, 1 for string length and 1 for alphabet index
+create a variable for the alphabet
+start a loop that will create a string integer times*/
+
+function randomize(integer) {
+	var array_of_strings = [];
+
+	for (i = 0; i < integer; i++ ) {
+		var random_length = Math.floor((Math.random() * 10) + 1);
+		var array_of_letters = [];
+
+		for (j = 0; j < random_length; j++ ) {
+			var random_index = Math.floor((Math.random() * 25));
+			var alphabet = "abcdefghijklmnopqrstuvwxyz";
+			var letter = alphabet[random_index];
+			array_of_letters.push(letter);
+		}
+		var new_array = array_of_letters.join("");
+		array_of_strings.push(new_array);
+	}
+
+	console.log(array_of_strings)
+
+	algos(array_of_strings)	
+}
+
+
 // Driver code
 
-algos(["long phrase","longest phrase","longer phrase"]);
-algos(["hey there", "antidisestablishmentarianism", "my brother is a cool guy", "this is, by far, the longest string in the array", "I like to eat chicken on holidays"]);
-algos(["number 1", "number2", "             ", "there are plenty of fish in the sea", "sometimes I like to pretend I'm a turtle and then go out into the world and experience life"]);
+//algos(["long phrase","longest phrase","longer phrase"]);
+//algos(["hey there", "antidisestablishmentarianism", "my brother is a cool guy", "this is, by far, the longest string in the array", "I like to eat chicken on holidays"]);
+//algos(["number 1", "number2", "             ", "there are plenty of fish in the sea", "sometimes I like to pretend I'm a turtle and then go out into the world and experience life"]);
 
-pairing({name: "Steven", age: 54}, {name: "Tamir", age: 54});
-pairing({name: "Steven", age: 53}, {name: "Tamir", age: 54});
-pairing({age: 54, name: "Samir"}, {name: "Tamir", age: 54});
-pairing({name: "Steven", children: 54}, {name: "Tamir", age: 54});
+//pairing({name: "Steven", age: 54}, {name: "Tamir", age: 54});
+//pairing({name: "Steven", age: 53}, {name: "Tamir", age: 54});
+//pairing({age: 54, name: "Samir"}, {name: "Tamir", age: 54});
+//pairing({name: "Steven", children: 54}, {name: "Tamir", age: 54});
 
+//randomize(3)
+
+//randomize(3)
+//randomize(20)
+//randomize(50)
 
 // for testing new ideas of key/value pairs and access
 //var sam = {name: "Steven", age: 54};
