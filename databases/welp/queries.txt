@@ -1,0 +1,28 @@
+Joining three tables:
+
+SELECT reviews.comment, users.first_name, users.last_name, business.name FROM reviews INNER JOIN business ON reviews.business_id = business.id INNER JOIN users ON reviews.user_id = users.id;
+   
+    long wait time|Mandy|Kaling|Amir's Towing
+    great wedding venue|Angela|Jolie|Grundy Hollow Wedding Chapel
+    great wedding venue|Bradford|Pitt|Grundy Hollow Wedding Chapel
+    danced the night away here|Steven|Wonder|The Beagle Nightclub
+    relaxing spot for yoga|Merryl|Streepman|Lotus Yoga
+    facility does not have fans|Holly|Berry|Lotus Yoga
+
+Choose instead to just view the user's names, the business name, the star rating, and the comment.
+
+SELECT users.first_name, users.last_name, business.name, reviews.stars, reviews.comment FROM reviews INNER JOIN business ON reviews.business_id = business.id INNER JOIN users ON reviews.user_id = users.id;
+    
+    Mandy|Kaling|Amir's Towing|2|long wait time
+    Angela|Jolie|Grundy Hollow Wedding Chapel|4|great wedding venue
+    Bradford|Pitt|Grundy Hollow Wedding Chapel|4|great wedding venue
+    Steven|Wonder|The Beagle Nightclub|5|danced the night away here
+    Merryl|Streepman|Lotus Yoga|5|relaxing spot for yoga
+    Holly|Berry|Lotus Yoga|3|facility does not have fans
+
+Select all from one business:
+
+SELECT * FROM reviews INNER JOIN business ON reviews.business_id = business.id INNER JOIN users ON reviews.user_id = users.id WHERE business.name="Grundy Hollow Wedding Chapel";
+
+    4|great wedding venue|1|3|1|Grundy Hollow Wedding Chapel|3|Angela|Jolie
+    4|great wedding venue|1|1|1|Grundy Hollow Wedding Chapel|1|Bradford|Pitt
