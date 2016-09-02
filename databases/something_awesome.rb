@@ -16,7 +16,7 @@ require 'sqlite3'
 
 # create SQLite3 database
 db = SQLite3::Database.new("to_do_list.db")
-db.results_as_hash = true
+#db.results_as_hash = true
 
 # store creation table sql in variable
 create_table_cmd = <<-SQL
@@ -26,9 +26,13 @@ create_table_cmd = <<-SQL
     task VARCHAR(255),
     notes VARCHAR(255),
     estimated_length INT,
-    to_be_complete DATETIME,
+    to_be_complete DATETIME
   )
 SQL
 
 # execute sql on existing database
 db.execute(create_table_cmd)
+
+def create_list(db, task, notes, estimated_length, to_be_complete)
+  db.execute("INSERT INTO to_do_list (timestamp, task, notes, estimated_length, to_be_complete) VALUES (?, ?, ?, ?, ?)", [timestamp, task, notes, estimated_length, to_be_complete])
+end
