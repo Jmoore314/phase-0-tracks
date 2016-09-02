@@ -11,27 +11,27 @@
 # weekly schedule by day
 # daily schedule
 
-#require gems
+# require gems
 require 'sqlite3'
 
 # create SQLite3 database
-db = SQLite3::Database.new("to_do_list.db")
-db.results_as_hash = true
+$DB = SQLite3::Database.new("to_do_list.db")
+$DB.results_as_hash = true
 
 # store creation table sql in variable
 create_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS to_do_list(
     id INTEGER PRIMARY KEY,
-    timestamp DATETIME,
+    timestamp VARCHAR(40),
     task VARCHAR(255),
     notes VARCHAR(255),
     estimated_length INT,
-    to_be_complete DATETIME
+    to_be_complete VARCHAR(19)
   )
 SQL
 
 # execute sql on existing database
-db.execute(create_table_cmd)
+$DB.execute(create_table_cmd)
 
 # command inputs
 def input(command)
@@ -51,20 +51,18 @@ def input(command)
 	end
 end
 
-# list commands
+# list all commands available
 def commands
 	puts "Commands:\n Add - to add a task to your list\n Delete - to delete a task from your list\n View - to view your current list\n Exit - to exit"
-	valid_input = true
 end
 
-# view tasks
+# view all tasks
 def view
-	view_items = db.execute("SELECT * FROM to_do_list")
+	view_items = $DB.execute("SELECT * FROM to_do_list")
 	view_items.each do |item|
-		puts "At #{timestamp} #{task} was entered with the note:\n #{notes}/nEstimated time of completion: #{estimated_length} minutes\n To be completed by: #{to_be_complete}"
-		puts "=" * 30
+		puts "At #{item['timestamp']}:\n#{item['task']} was entered with the note:\n #{item['notes']}\nEstimated time of completion: #{item['estimated_length']} minutes\nTo be completed by: #{item['to_be_complete']}"
+		puts "=" * 30         # acts as a divider
 	end
-	valid_input = true
 end
 
 # add tasks
@@ -77,42 +75,36 @@ def add
 	puts "What notes would you like to add?"
 	notes = gets.chomp
 
-	puts "What is the estimated length in minutes?"
+	puts "What is the estimated length (in minutes)?"
 	estimated_length = gets.chomp.to_i
 
 	puts "What is the date and time to be completed? (YYYY-MM-DD HH:mm:ss)"
 	to_be_complete = gets.chomp
 
-	create_list_item(db, timestamp, task, notes, estimated_length, to_be_complete)
-	valid_input = true
+	create_list_item(timestamp.inspect, task, notes, estimated_length, to_be_complete)
 end
 
 #delete tasks
 def delete
 	puts "Which task would you like to delete?"
-	delete = gets.chomp.downcase
+	delete = gets.chomp.downcase.to_s
 
-	delete_list_item(db, delete)
+	delete_list_item(delete)
 
 	puts "#{delete} has been deleted"
-	valid_input = true
 end
 
 # method to insert tasks to database
-def create_list_item(db, timestamp, task, notes, estimated_length, to_be_complete)
-  db.execute("INSERT INTO to_do_list (timestamp, task, notes, estimated_length, to_be_complete) VALUES (?, ?, ?, ?, ?)", [timestamp, task, notes, estimated_length, to_be_complete])
+def create_list_item(timestamp, task, notes, estimated_length, to_be_complete)
+	$DB.execute("INSERT INTO to_do_list (timestamp, task, notes, estimated_length, to_be_complete) VALUES (?, ?, ?, ?, ?)", [timestamp, task, notes, estimated_length, to_be_complete])
 end
 
 # method to delete tasks in database
-def delete_list_item(db, task)
-	deletion = <<-SQL
-	DELETE FROM to_do_list
-	WHERE task=#{task}
-	SQL
-  	db.execute(deletion)
+def delete_list_item(task)
+  	$DB.execute("DELETE FROM to_do_list WHERE task=\'#{task}\'")
 end
 
-
+############################################################################
 # driver code
 puts "Welcome to your to-do-list!"
 puts "You can view commands by typing \'!commands\'"
@@ -120,18 +112,16 @@ puts "You can view commands by typing \'!commands\'"
 valid_input = false
 valid_else = false
 
-while valid_else == false
-	while valid_input == false
-		puts "What would you like to do?"
-		command = gets.chomp.downcase
-		break if command == "exit"
-		input(command)
-	end
+while valid_input == false
+	puts "What would you like to do?"
+	command = gets.chomp.downcase
+	break if command == "exit"
+	input(command)
 	
 	puts "Would you like to do something else?"
 	something_else = gets.chomp.downcase
 
 	if something_else == "no"
-		valid_else == true
+		valid_input = true
 	end
 end
