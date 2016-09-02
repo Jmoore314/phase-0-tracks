@@ -12,19 +12,23 @@
 # daily schedule
 
 #require gems
-require sqlite3
+require 'sqlite3'
 
 # create SQLite3 database
-db = SQLite3::Database.new("kittens.db")
+db = SQLite3::Database.new("to_do_list.db")
 db.results_as_hash = true
 
 # store creation table sql in variable
 create_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS to_do_list(
     id INTEGER PRIMARY KEY,
-    name VARCHAR(255),
-    age INT
+    timestamp DATETIME,
+    task VARCHAR(255),
+    notes VARCHAR(255),
+    estimated_length INT,
+    to_be_complete DATETIME,
   )
 SQL
 
 # execute sql on existing database
+db.execute(create_table_cmd)
