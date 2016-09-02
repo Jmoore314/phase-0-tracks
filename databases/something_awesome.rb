@@ -57,21 +57,44 @@ def commands
 	valid_input = true
 end
 
+# view tasks
 def view
 	view_items = db.execute("SELECT * FROM to_do_list")
 	view_items.each do |item|
 		puts "At #{timestamp} #{task} was entered with the note:\n #{notes}/nEstimated time of completion: #{estimated_length} minutes\n To be completed by: #{to_be_complete}"
-		puts "X" * 30
+		puts "=" * 30
 	end
 	valid_input = true
 end
 
+# add tasks
 def add
+	timestamp = Time.now # stores the current time
+
+	puts "What is the task you would like to enter?"
+	task = gets.chomp.downcase
+
+	puts "What notes would you like to add?"
+	notes = gets.chomp
+
+	puts "What is the estimated length in minutes?"
+	estimated_length = gets.chomp.to_i
+
+	puts "What is the date and time to be completed? (YYYY-MM-DD HH:mm:ss)"
+	to_be_complete = gets.chomp
+
+	create_list_item(db, timestamp, task, notes, estimated_length, to_be_complete)
 	valid_input = true
 end
 
+#delete tasks
 def delete
+	puts "Which task would you like to delete?"
+	delete = gets.chomp.downcase
 
+	delete_list_item(db, delete)
+
+	puts "#{delete} has been deleted"
 	valid_input = true
 end
 
@@ -82,7 +105,11 @@ end
 
 # method to delete tasks in database
 def delete_list_item(db, task)
-  db.execute("INSERT INTO to_do_list (timestamp, task, notes, estimated_length, to_be_complete) VALUES (?, ?, ?, ?, ?)", [timestamp, task, notes, estimated_length, to_be_complete])
+	deletion = <<-SQL
+	DELETE FROM to_do_list
+	WHERE task=#{task}
+	SQL
+  	db.execute(deletion)
 end
 
 
