@@ -42,7 +42,7 @@ function Counter(event) {
 	for (var i = 0; i < counter; i++) {
 		list[i].style.color = "red";
 		var j = 6
-		list[i].style.fontSize = j - i + "ex";
+		list[i].style.fontSize = j - i + "em";
 	}
 }
 
