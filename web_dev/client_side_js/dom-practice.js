@@ -28,15 +28,24 @@ launchPhoto.addEventListener("click", colorChanger);
 // Make the list items red and decreaseing in font size
 var list = document.getElementsByTagName("li");
 
-for (var i = 0; i < list.length; i++) {
-	list[i].style.color = "red";
-	var j = 6
-	list[i].style.fontSize = j - i + "em";
+// for (var i = 0; i < list.length; i++) {
+// 	list[i].style.color = "red";
+// 	var j = 6
+// 	list[i].style.fontSize = j - i + "em";
+// }
+
+// declaring a counter function to increase with each click
+var counter = 0
+
+function Counter(event) {
+	counter += 1
+	for (var i = 0; i < counter; i++) {
+		list[i].style.color = "red";
+		var j = 6
+		list[i].style.fontSize = j - i + "ex";
+	}
 }
 
-//function listColor(event) {
-//
-//}
+artsyPhoto.addEventListener("click", Counter);
 
-//list.addEventListener("click", listColor);
 
