@@ -23,10 +23,9 @@
   <img src = "http://www.lighthousenewsdaily.com/wp-content/uploads/2016/02/1620413_orig.jpg" alt = "Atlas V during takeoff"/>
   <script src="jquery-3.1.0.js"></script>
   <script>
-  	window.onload = function() {
-    	alert( "welcome" );
-	};
-
+ //  	window.onload = function() {
+ //    	alert( "welcome" );
+// };
 	var title = document.getElementById("title");
 	title.style.fontSize = "5em";
 
@@ -40,8 +39,10 @@
 	artsyPhoto = photos[0];
 	launchPhoto = photos[1];
 
-	artsyPhoto.click(function() {
-  		$( this ).slideUp();
+	$(document).ready(function() {
+		$("img").click(function() {
+  			$( this ).slideUp();
+		})
 	});
 
 	console.log(artsyPhoto);
@@ -54,7 +55,7 @@
 	console.log(list)
 	var counter = 0;
 
-  	artsyPhoto.click(function Counter() {
+  	$('artsyPhoto').click(function Counter() {
 		counter += 1;
 		for (var i = 0; i < counter; i++) {
 			list[i].style.color = "red";
