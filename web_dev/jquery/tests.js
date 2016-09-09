@@ -37,15 +37,26 @@ var list = document.getElementsByTagName("li");
 // declaring a counter function to increase with each click
 var counter = 0
 
-function Counter(event) {
+// function Counter(event) {
+// 	counter += 1
+// 	for (var i = 0; i < counter; i++) {
+// 		list[i].style.color = "red";
+// 		var j = 6
+// 		list[i].style.fontSize = j - i + "em";
+// 	}
+// }
+
+// artsyPhoto.addEventListener("click", Counter);
+
+artsyPhoto.click(function Counter() {
 	counter += 1
 	for (var i = 0; i < counter; i++) {
 		list[i].style.color = "red";
 		var j = 6
 		list[i].style.fontSize = j - i + "em";
 	}
-}
+})
 
-artsyPhoto.addEventListener("click", Counter);
+//artsyPhoto.addEventListener("click", Counter);
 
 
