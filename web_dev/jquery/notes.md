@@ -22,3 +22,4 @@ take no breaks, watch start trek (tng, the only trek) in background
 breaks are important when programmers block happens
 test things worth tinkering, like things that have fun tie ins
 
+# Watching star trek was non-condusive, but great. Finding out how to get jquery working wasn't working well.
