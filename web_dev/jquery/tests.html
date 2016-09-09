@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="tests.css">
 </head>
 <body id="body">
-  <script src="jquery-3.1.0.js"></script>
+  
   <h1 id = "title">The Atlas V Rocket Launch:</h1>
   <h2 id = "subtitle">OSIRIS-REx Mission</h2>
   <img src = "http://spaceflight101.com/osiris-rex/wp-content/uploads/sites/103/2016/08/OSIRIS-REx-spacecraft-illustration-LM.jpg" alt = "Artistic rendering of Atlas V rocket in orbit"/>
@@ -21,7 +21,47 @@
 
   <p id = "update">Update: the Atlas V successfully launched!</p>
   <img src = "http://www.lighthousenewsdaily.com/wp-content/uploads/2016/02/1620413_orig.jpg" alt = "Atlas V during takeoff"/>
+  <script src="jquery-3.1.0.js"></script>
+  <script>
+  	window.onload = function() {
+    	alert( "welcome" );
+	};
 
+	var title = document.getElementById("title");
+	title.style.fontSize = "5em";
+
+	var subtitle = document.getElementById("subtitle");
+	subtitle.style.fontSize = "3em";
+
+	var body = document.getElementById("body");
+	body.style.backgroundColor = "orange";
+
+  	var photos = document.getElementsByTagName("img");
+	artsyPhoto = photos[0];
+	launchPhoto = photos[1];
+
+	artsyPhoto.click(function() {
+  		$( this ).slideUp();
+	});
+
+	console.log(artsyPhoto);
+	console.log(launchPhoto);
+	artsyPhoto.style.border = "10px dotted pink";
+	launchPhoto.style.border = "10px yellow";
+	launchPhoto.style.borderStyle = "dotted dashed solid double";
+
+	var list = document.getElementsByTagName("li");
+	console.log(list)
+	var counter = 0;
+
+  	artsyPhoto.click(function Counter() {
+		counter += 1;
+		for (var i = 0; i < counter; i++) {
+			list[i].style.color = "red";
+			var j = 6;
+			list[i].style.fontSize = j - i + "em";
+		}
+	});
+  </script>
 </body>
-<script src="test.js"></script>
 </html>
